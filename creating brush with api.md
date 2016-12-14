@@ -27,7 +27,7 @@ For running your local copy of A-Painter, you need `npm` installed. Just enter t
 ## Creating an 'empty' brush
 
 
-If we read the A-Painter [readme](http://github.com/aframevr/a-painter), it says you need to implement this very simple interface:
+If we read the A-Painter [readme](https://github.com/aframevr/a-painter#a-painter), it says you need to implement this very simple interface:
 
 ```javascript
 BrushInterface.prototype = {
