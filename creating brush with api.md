@@ -91,7 +91,7 @@ addPoint: function(position, orientation, pointerPosition, pressure, timestamp) 
     var lineGeometry = new THREE.Geometry();
     lineGeometry.vertices.push(pointerPosition, this.data.prevPoint); // line from current position to the previous one
     var lineMaterial = new THREE.LineBasicMaterial({color: this.data.color}); // create a material for the line with the current color selected
-    var lineMesh = new THREE.Line(lineGeometry, lineMaterial); // create the line mesh 
+    var line = new THREE.Line(lineGeometry, lineMaterial); // create the line mesh 
     this.object3D.add(line); // add it to the stroke entity
   }
   return true; // point added!
@@ -125,7 +125,7 @@ addPoint: function(position, orientation, pointerPosition, pressure, timestamp) 
   if (this.data.prevPoint) {
     var lineGeometry = new THREE.Geometry();
     lineGeometry.vertices.push(pointerPosition, this.data.prevPoint); // line from current position to the previous one
-    var lineMesh = new THREE.Line(lineGeometry, this.material); // <- reusing the material
+    var line = new THREE.Line(lineGeometry, this.material); // <- reusing the material
     this.object3D.add(line);
   }
   return true; 
@@ -144,7 +144,7 @@ in all our brush functions we have the object `this.data` available with many us
 
 ## Alive brush
 
-By using the function `tick()` we can animate the strokes of our brush in any way we want. This function is called continuously on every frame and receives two parameters: `time` and `delta`. The first is the number of ms passed since the beginning of A-Painter, and the second is the difference of ms between this call and the last tick. They are useful for making the animation time dependant and running at the same speed  of the 
+By using the function `tick()` we can animate the strokes of our brush in any way we want. This function is called continuously on every frame and receives two parameters: `time` and `delta`. The first is the number of ms passed since the beginning of A-Painter, and the second is the difference of ms between this call and the last tick. They are useful for making the animation time dependant and running always at the same speed regarding of the frame rate.
 
 Let's just add a simple little jitter to the lines:
 
