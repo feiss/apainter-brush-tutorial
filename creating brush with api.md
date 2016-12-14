@@ -1,4 +1,4 @@
-# Creating simple new A-Painter brush using the Brush API
+# Creating a new A-Painter brush using the Brush API
 
 In this tutorial we will take the minimum steps required to create a very simple brush. For example, a brush to draw simple lines. We will going to call it `simpleline`.
 
