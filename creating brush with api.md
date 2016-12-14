@@ -132,12 +132,12 @@ addPoint: function(position, orientation, pointerPosition, pressure, timestamp) 
 
 in all our brush functions we have the object `this.data` available with many useful properties:
 
-- this.data.**points** list of points added to the stroke
-- this.data.**numPoints**  length of this.data.points
-- this.data.**size**  size of the stroke when it was created. Multiply it by `pressure` in `addPoint()` to get the current -pressure sensitive- size of the stroke
-- this.data.**prevPoint**  position of the last stroke
-- this.data.**maxPoints**  maximum number of points that we previously defined this brush can hold on each stroke
-- this.data.**color**  the color that was selected when the stroke started
+- **this.data.points**: list of points added to the stroke
+- **this.data.numPoints**:  length of this.data.points
+- **this.data.size**:  size of the stroke when it was created. Multiply it by `pressure` in `addPoint()` to get the current -pressure sensitive- size of the stroke
+- **this.data.prevPoint**:  position of the last stroke
+- **this.data.maxPoints**:  maximum number of points that we previously defined this brush can hold on each stroke
+- **this.data.color**:  the color that was selected when the stroke started
 
 
 ## Alive brush
