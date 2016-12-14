@@ -88,9 +88,10 @@ Go to our `simpleline.js` file and change the `addPoint()` function like this:
 ```javascript
 addPoint: function(position, orientation, pointerPosition, pressure, timestamp) { 
   if (this.data.prevPoint) { // if it is the first point, there's no line to paint
-    var lineGeometry = new THREE.line(pointerPosition, this.data.prevPoint); // line geometry from current position to the previous one
-    var lineMaterial = new THREE.material({color: this.data.color}); // create a material for the line with the current color selected
-    var lineMesh = new THREE.mesh(lineGeometry, lineMaterial); // create the line mesh 
+    var lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push(pointerPosition, this.data.prevPoint); // line from current position to the previous one
+    var lineMaterial = new THREE.LineBasicMaterial({color: this.data.color}); // create a material for the line with the current color selected
+    var lineMesh = new THREE.Line(lineGeometry, lineMaterial); // create the line mesh 
     this.object3D.add(line); // add it to the stroke entity
   }
   return true; // point added!
@@ -113,7 +114,7 @@ Since `addPoint()` is usually called hundreds of times for each stroke you make,
 
 ```javascript
 init: function () {
-  this.material = new THREE.material({color: this.data.color});
+  this.material = new THREE.LineBasicMaterial({color: this.data.color});
 }
 ```
 
@@ -122,8 +123,9 @@ and then change our `addPoint()`:
 ```javascript
 addPoint: function(position, orientation, pointerPosition, pressure, timestamp) { 
   if (this.data.prevPoint) {
-    var lineGeometry = new THREE.line(pointerPosition, this.data.prevPoint);
-    var lineMesh = new THREE.mesh(lineGeometry, this.material); // <- reusing the material
+    var lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push(pointerPosition, this.data.prevPoint); // line from current position to the previous one
+    var lineMesh = new THREE.Line(lineGeometry, this.material); // <- reusing the material
     this.object3D.add(line);
   }
   return true; 
@@ -149,8 +151,8 @@ Let's just add a simple little jitter to the lines:
 ```javascript
 tick: function (time, delta) {
   for (var i = 0; i < this.object3D.children.length; i++) {
-    this.object3D.children[i].vertex1.add(Math.random() * 0.2, Math.random() * 0.2, Math.random() * 0.2);
-    this.object3D.children[i].vertex2.add(Math.random() * 0.2, Math.random() * 0.2, Math.random() * 0.2);
+    this.object3D.children[i].geometry.vertices[0].add(Math.random() * 0.2, Math.random() * 0.2, Math.random() * 0.2);
+    this.object3D.children[i].geometry.vertices[1].add(Math.random() * 0.2, Math.random() * 0.2, Math.random() * 0.2);
   }
 }
 ```
