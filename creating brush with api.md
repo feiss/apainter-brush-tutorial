@@ -19,7 +19,7 @@ git clone http://github.com/aframevr/a-painter.git
 cd a-painter
 ```
 
-If you don't have `git`, you can go to http://github.com/aframevr/a-painter, click on the green button "download repository" (????????), and unzip the archive wherever you want.
+If you don't have `git`, you can go to http://github.com/aframevr/a-painter, click on the green button "Clone or download", download the zip and unzip it wherever you want.
 
 For running your local copy of A-Painter, you need `npm` installed. Just enter the directory where A-Painter is and run `npm start`. Then, open http://localhost:8080 with a [VR compatible browser](http://????).
 
