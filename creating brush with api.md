@@ -126,7 +126,8 @@ and then change our `addPoint()`:
 addPoint: function(position, orientation, pointerPosition, pressure, timestamp) { 
   if (this.data.prevPointerPosition) {
     var lineGeometry = new THREE.Geometry();
-    lineGeometry.vertices.push(pointerPosition, this.data.prevPointerPosition); // line from current position to the previous one
+    lineGeometry.vertices.push(pointerPosition, this.data.prevPointerPosition);
+    // removed this line
     var line = new THREE.Line(lineGeometry, this.material); // <- reusing the material
     this.object3D.add(line);
   }
