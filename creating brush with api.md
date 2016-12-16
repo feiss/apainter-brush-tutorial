@@ -54,7 +54,7 @@ AFRAME.registerBrush(
     tick: function(time, delta) {}
   }, 
   {
-    thumbnail: 'thumb_simpleline.png',
+    thumbnail: 'brushes/thumb_simpleline.png',
     maxPoints: 1000,
     spacing: 0
   }
