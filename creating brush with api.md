@@ -89,9 +89,9 @@ Go to our `simpleline.js` file and change the `addPoint()` function like this:
 
 ```javascript
 addPoint: function(position, orientation, pointerPosition, pressure, timestamp) { 
-  if (this.data.prevPoint) { // if it is the first point, there's no line to paint
+  if (this.data.prevPointerPosition) { // if it is the first point, there's no line to paint
     var lineGeometry = new THREE.Geometry();
-    lineGeometry.vertices.push(pointerPosition, this.data.prevPoint); // line from current position to the previous one
+    lineGeometry.vertices.push(pointerPosition, this.data.prevPointerPosition); // line from current position to the previous one
     var lineMaterial = new THREE.LineBasicMaterial({color: this.data.color}); // create a material for the line with the current color selected
     var line = new THREE.Line(lineGeometry, lineMaterial); // create the line mesh 
     this.object3D.add(line); // add it to the stroke entity
@@ -124,9 +124,9 @@ and then change our `addPoint()`:
 
 ```javascript
 addPoint: function(position, orientation, pointerPosition, pressure, timestamp) { 
-  if (this.data.prevPoint) {
+  if (this.data.prevPointerPosition) {
     var lineGeometry = new THREE.Geometry();
-    lineGeometry.vertices.push(pointerPosition, this.data.prevPoint); // line from current position to the previous one
+    lineGeometry.vertices.push(pointerPosition, this.data.prevPointerPosition); // line from current position to the previous one
     var line = new THREE.Line(lineGeometry, this.material); // <- reusing the material
     this.object3D.add(line);
   }
@@ -139,7 +139,8 @@ in all our brush functions we have the object `this.data` available with many us
 - **this.data.points**: list of points added to the stroke
 - **this.data.numPoints**:  length of this.data.points
 - **this.data.size**:  size of the stroke when it was created. Multiply it by `pressure` in `addPoint()` to get the current -pressure sensitive- size of the stroke
-- **this.data.prevPoint**:  position of the last stroke
+- **this.data.prevPosition**:  position of the controller in the latest stroke
+- **this.data.prevPointerPosition**:  position of the tip in the latest stroke
 - **this.data.maxPoints**:  maximum number of points that we previously defined this brush can hold on each stroke
 - **this.data.color**:  the color that was selected when the stroke started
 
