@@ -154,13 +154,32 @@ Let's just add a simple little jitter to the lines:
 
 ```javascript
 tick: function (time, delta) {
+  // get a random offset
+  var rnd1 = new THREE.Vector3(Math.random() * 0.001 - 0.0005, Math.random() * 0.001 - 0.0005, Math.random() * 0.001 - 0.0005);
+  // iterate all lines
   for (var i = 0; i < this.object3D.children.length; i++) {
-    this.object3D.children[i].geometry.vertices[0].add(Math.random() * 0.2, Math.random() * 0.2, Math.random() * 0.2);
-    this.object3D.children[i].geometry.vertices[1].add(Math.random() * 0.2, Math.random() * 0.2, Math.random() * 0.2);
+    // get a second offset
+    var rnd2 = new THREE.Vector3(Math.random() * 0.001 - 0.0005, Math.random() * 0.001 - 0.0005, Math.random() * 0.001 - 0.0005);
+    // apply offsets to both vertices of each line
+    this.object3D.children[i].geometry.vertices[0].add(rnd2);
+    this.object3D.children[i].geometry.vertices[1].add(rnd1);
+    // set first offset to the second, so lines don't break
+    rnd1 = rnd2;
+    // tell threejs to update vertex positions
+    this.object3D.children[i].geometry.verticesNeedUpdate = true;
   }
 }
 ```
 
+For this to work, the vertices objects must be unique references. For doing this, in our function `addPoint()` change line:
+
+`lineGeometry.vertices.push(pointerPosition, this.data.prevPointerPosition);`
+
+for 
+
+`lineGeometry.vertices.push(pointerPosition.clone(), this.data.prevPointerPosition.clone());`
+
+Try this again, and check it out: lighting bolts! \:D/
 
 
 
