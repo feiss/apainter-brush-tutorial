@@ -41,7 +41,9 @@ A function for initialization, another for adding new 'points' to the stroke, an
 
 So, let's start by creating the skeleton of the brush:
 
-Create a file in `src/brushes/` called `simpleline.js`, paste this code and save it:
+First, copy [this image](http://i.imgur.com/FBkLJdX.png) to `a-painter/brushes/thumb_simpleline.png`, so we can find it in the brush menu later.
+
+Then, create a file in `src/brushes/` called `simpleline.js`, paste this code and save it:
 
 ```javascript
 AFRAME.registerBrush(
@@ -52,7 +54,7 @@ AFRAME.registerBrush(
     tick: function(time, delta) {}
   }, 
   {
-    thumbnail: '',
+    thumbnail: 'thumb_simpleline.png',
     maxPoints: 1000,
     spacing: 0
   }
