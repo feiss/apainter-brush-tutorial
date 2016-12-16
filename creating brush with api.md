@@ -146,6 +146,11 @@ in all our brush functions we have the object `this.data` available with many us
 - **this.data.color**:  the color that was selected when the stroke started
 
 
+> IMPORTANT: this brush is very unoptimized, creating a single line for every 2 vertices is a very bad decision, and as soon as you paint some strokes you probably perceive a drop in the frame rate. I just wanted to keep this tutorial as simple as possible.
+
+> (If you wonder, the proper way of doing dynamic lines in threejs is using [BufferGeometries](https://threejs.org/docs/?q=buffer#Reference/Core/BufferGeometry). Like in [this example](http://jsfiddle.net/w67tzfhx/) by WestLangley).
+
+
 ## Alive brush
 
 By using the function `tick()` we can animate the strokes of our brush in any way we want. This function is called continuously on every frame and receives two parameters: `time` and `delta`. The first is the number of ms passed since the beginning of A-Painter, and the second is the difference of ms between this call and the last tick. They are useful for making the animation time dependant and running always at the same speed regarding of the frame rate.
