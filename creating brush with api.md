@@ -6,7 +6,7 @@ Requisites:
 
 - Know how to program
 - Know [ThreeJS](http://threejs.org) basics
-- [npm](you need to install [nodejs](https://nodejs.org/en/download/))
+- npm(you need to install [nodejs](https://nodejs.org/en/download/))
 
 
 ## Setup
