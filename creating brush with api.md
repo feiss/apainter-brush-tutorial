@@ -190,3 +190,8 @@ Try this again, and check it out: lighting bolts! \:D/
 http://i.imgur.com/MU2mfKX.gifv
 
 
+## Now, your turn
+
+I hope you find this tutorial clear and interesting, and that you are eager to do your own custom brushes. If you do something cool, please share with us! You can contribute and add new brushes to the official A-Painter by sending us a Pull Request to the  [github A-Painter repository](http://github.com/aframevr/a-painter).
+
+That's all for now. Have fun! :)
