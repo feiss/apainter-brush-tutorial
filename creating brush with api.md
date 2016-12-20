@@ -2,14 +2,10 @@
 
 In this tutorial we will take the minimum steps required to create a very simple brush. For example, a brush to draw simple lines. We will going to call it `simpleline`.
 
-Requisites:
-
-- Know how to program
-- Know [ThreeJS](http://threejs.org) basics
-- npm(you need to install [nodejs](https://nodejs.org/en/download/))
-
+> Please notice that for making new brushes using A-Painter's Brush API you need to have some programming basics and also be a bit familiar with [Three.js](http://threejs.org).
 
 ## Setup
+### Download A-Painter source code
 
 First, you need to grab your own copy of A-Painter to your computer, so you can change its code. If you have `git` installed, you can easily do this by:
 
@@ -21,7 +17,13 @@ cd a-painter
 
 If you don't have `git`, you can go to http://github.com/aframevr/a-painter, click on the green button "Clone or download", download the zip and unzip it wherever you want.
 
-For running your local copy of A-Painter, you need `npm` installed. Just enter the directory where A-Painter is and run `npm start`. Then, open http://localhost:8080 with a [VR compatible browser](https://iswebvrready.org/).
+### Running
+
+For running your local copy of A-Painter, and if you have [npm](https://nodejs.org/en/download/) installed, just enter the directory where A-Painter is and run `npm start`. If you don't have `npm`, you can use any web server: for example, grab [mongoose](https://www.cesanta.com/products/binary), copy `mongoose.exe` file in A-Painter folder, and run it.
+
+Then, open http://localhost:8080 with a [VR compatible browser](https://iswebvrready.org/).
+
+
 
 
 ## Creating an 'empty' brush
