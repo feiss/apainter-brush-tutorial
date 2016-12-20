@@ -43,7 +43,7 @@ A function for initialization, another for adding new 'points' to the stroke, an
 
 So, let's start by creating the skeleton of the brush:
 
-First, copy [this image](http://i.imgur.com/FBkLJdX.png) to `a-painter/brushes/thumb_simpleline.png`, so we can find it in the brush menu later.
+First, copy [this image](http://i.imgur.com/FBkLJdX.png) to `a-painter/brushes/thumb_simpleline.png`. It will be the thumbnail image of our brush, so we can find it in the menu later.
 
 Then, create a file in `src/brushes/` called `simpleline.js`, paste this code and save it:
 
