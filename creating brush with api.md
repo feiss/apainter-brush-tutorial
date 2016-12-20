@@ -5,8 +5,8 @@ In this tutorial we will take the minimum steps required to create a very simple
 Requisites:
 
 - Know how to program
-- Know [ThreeJS](http://threejs.org????) basics
-- [npm](http://????)
+- Know [ThreeJS](http://threejs.org) basics
+- [npm](you need to install [nodejs](https://nodejs.org/en/download/))
 
 
 ## Setup
@@ -21,7 +21,7 @@ cd a-painter
 
 If you don't have `git`, you can go to http://github.com/aframevr/a-painter, click on the green button "Clone or download", download the zip and unzip it wherever you want.
 
-For running your local copy of A-Painter, you need `npm` installed. Just enter the directory where A-Painter is and run `npm start`. Then, open http://localhost:8080 with a [VR compatible browser](http://????).
+For running your local copy of A-Painter, you need `npm` installed. Just enter the directory where A-Painter is and run `npm start`. Then, open http://localhost:8080 with a [VR compatible browser](https://iswebvrready.org/).
 
 
 ## Creating an 'empty' brush
@@ -78,10 +78,9 @@ For testing back and forth is quite convenient to have the brush already selecte
 
 ## Adding mojo
 
-So, let's make our brush actually paint something. Every time you push the trigger to start a new stroke, A-Painter adds a new entity (an [A-Frame](http://aframe.io) `<a-entity>`) in the scene that will hold the geometry of the stroke. Then, A-Painter starts calling your `addPoint()` function each time the controller is moved more than `spacing` meters, so you can add stuff to your brush, grow the stroke or whatever your brush does. Normally, you will want to add or modify the 3D geometry of the brush, which can be accessed via `this.object3D`. In our case, for each new point we will draw a line from it to the previous one. The basic way of doing this is by creating new [THREE.lines](????) that will be added to the `object3D`.
+So, let's make our brush actually paint something. Every time you push the trigger to start a new stroke, A-Painter adds a new entity (an [A-Frame](http://aframe.io) `<a-entity>`) in the scene that will hold the geometry of the stroke. Then, A-Painter starts calling your `addPoint()` function each time the controller is moved more than `spacing` meters, so you can add stuff to your brush, grow the stroke or whatever your brush does. Normally, you will want to add or modify the 3D geometry of the brush, which can be accessed via `this.object3D`. In our case, for each new point we will draw a line from it to the previous one. The basic way of doing this is by creating new [THREE.Line](https://threejs.org/docs/?q=line#Reference/Objects/Line) that will be added to the `object3D`.
 
-[Diagram of the relationship among brush-stroke-entity-objectDefinition-object3d]
-
+![diagram](http://i.imgur.com/PllsU9K.png)
 
 
 Go to our `simpleline.js` file and change the `addPoint()` function like this:
