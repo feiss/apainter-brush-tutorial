@@ -69,7 +69,7 @@ require('./brushes/simpleline.js');
 
 Now if you run your local A-Painter and test it with your HTC Vive or Oculus with controllers, you will find your new brush at the end of the list of brushes:
 
-[GIF showing where is the new brush]
+http://i.imgur.com/wN51Amc.mp4
 
 
 For testing back and forth is quite convenient to have the brush already selected by default. To do this, go to
@@ -108,7 +108,7 @@ In our new `addPoint()`, we first check if `this.data.prevPoint` exists or not. 
 
 Go try it!
 
-[GIF of painting with the new brush]
+http://i.imgur.com/KsCjJjR.mp4
 
 ## Caching
 
@@ -186,6 +186,6 @@ for
 
 Try this again, and check it out: lighting bolts! \:D/
 
-
+http://i.imgur.com/MU2mfKX.gifv
 
 
