@@ -19,9 +19,7 @@ If you don't have `git`, you can go to http://github.com/aframevr/a-painter, cli
 
 ### Running
 
-For running your local copy of A-Painter, and if you have [npm](https://nodejs.org/en/download/) installed, just enter the directory where A-Painter is and run `npm start`. If you don't have `npm`, you can use any web server: for example, grab [mongoose](https://www.cesanta.com/products/binary), copy the `.exe` file in A-Painter folder, and run it.
-
-Then, open http://localhost:8080 with a [VR compatible browser](https://iswebvrready.org/).
+For running your local copy of A-Painter, you need [npm](https://nodejs.org/en/download/) installed.  Just enter the directory where A-Painter is and run `npm start`. Then, open http://localhost:8080 with a [VR compatible browser](https://iswebvrready.org/).
 
 
 
