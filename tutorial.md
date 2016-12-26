@@ -110,6 +110,11 @@ Go try it!
 
 http://imgur.com/KsCjJjR
 
+I know, I know, the line is too thin! `LineBasicMaterial` has a `linewidth` parameter indeed, but as [the documentation](https://threejs.org/docs/api/materials/LineBasicMaterial.html) reads: 
+> Due to limitations in the ANGLE layer, with the WebGL renderer on Windows platforms `linewidth` will always be 1 regardless of the set value. 
+
+(As an exercise, you could try to use `linewidth` and load the scene in macOS or linux)
+
 ## Caching
 
 Since `addPoint()` is usually called hundreds of times for each stroke you make, you want it to be as fast as possible and avoid creating unnecessary stuff. For this reason, it is a good decision to cache and reuse all you can. In our example, the material is the same for every line added to the stroke, so let's cache it. The `init()` function is perfect for this purpose for is it called just one time, at the beginning of the stroke:
