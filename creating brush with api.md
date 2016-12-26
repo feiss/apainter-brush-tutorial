@@ -1,13 +1,13 @@
-# Creating a new A-Painter brush using the Brush API
+In this tutorial we will take the minimum steps required to create a very simple brush for A-Painter, a VR painting experience made by [Mozilla VR](http://mozvr.com) built with [A-Frame](http://aframe.io). For example, a brush to draw simple lines. We will going to call it `simpleline`.
 
-In this tutorial we will take the minimum steps required to create a very simple brush. For example, a brush to draw simple lines. We will going to call it `simpleline`.
+> Please notice that for making new brushes using A-Painter's Brush API you need to have some Javascript programming basics and also be a bit familiar with [Three.js](http://threejs.org).
 
-> Please notice that for making new brushes using A-Painter's Brush API you need to have some programming basics and also be a bit familiar with [Three.js](http://threejs.org).
+This will be an in-depth explanation of how to make a brush. For a quick start, take a look to [this nice introduction by Michael Feldstein](https://medium.com/@msfeldstein/make-a-vr-paintbrush-in-a-painter-68f802716cf9)
 
 ## Setup
-### Download A-Painter source code
+##### Download A-Painter Source Code
 
-First, you need to grab your own copy of A-Painter to your computer, so you can change its code. If you have `git` installed, you can easily do this by:
+First, you need to grab your own copy of A-Painter and save to your computer, so you can change its code. If you have **Git** installed, you can easily do this by:
 
 ```bash
 cd your/folder
@@ -17,15 +17,14 @@ cd a-painter
 
 If you don't have `git`, you can go to http://github.com/aframevr/a-painter, click on the green button "Clone or download", download the zip and unzip it wherever you want.
 
-### Running
+##### Run and Test
 
 For running your local copy of A-Painter, you need [npm](https://nodejs.org/en/download/) installed.  Just enter the directory where A-Painter is and run `npm start`. Then, open http://localhost:8080 with a [VR compatible browser](https://iswebvrready.org/).
 
 
 
 
-## Creating an 'empty' brush
-
+## Creating an 'Empty' Brush
 
 If we read the A-Painter [readme](https://github.com/aframevr/a-painter#a-painter), it says you need to implement this very simple interface:
 
@@ -37,7 +36,7 @@ BrushInterface.prototype = {
 };
 ```
 
-A function for initialization, another for adding new 'points' to the stroke, and another for animating the brush if that would be the case.
+The code sample above contains a function for initialization, another for adding new 'points' to the stroke, and another for animating the brush if that would be the case.
 
 So, let's start by creating the skeleton of the brush:
 
@@ -69,18 +68,18 @@ require('./brushes/simpleline.js');
 
 Now if you run your local A-Painter and test it with your HTC Vive or Oculus with controllers, you will find your new brush at the end of the list of brushes:
 
-http://i.imgur.com/wN51Amc.mp4
+<blockquote class="imgur-embed-pub" lang="en" data-id="wN51Amc"><a href="//imgur.com/wN51Amc"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 
-For testing back and forth is quite convenient to have the brush already selected by default. To do this, go to
-`src/components/brush.js` and around line 6 change `brush: {default: 'line'}` by `brush : {default: 'simpleline'}`.
+For testing back and forth it is quite convenient to have the brush already selected by default. To do this, go to
+`src/components/brush.js` and in the schema definition at the top of the file  change `brush: {default: 'line'}` by `brush : {default: 'simpleline'}`.
 
 
-## Adding mojo
+## Connecting the dots
 
 So, let's make our brush actually paint something. Every time you push the trigger to start a new stroke, A-Painter adds a new entity (an [A-Frame](http://aframe.io) `<a-entity>`) in the scene that will hold the geometry of the stroke. Then, A-Painter starts calling your `addPoint()` function each time the controller is moved more than `spacing` meters, so you can add stuff to your brush, grow the stroke or whatever your brush does. Normally, you will want to add or modify the 3D geometry of the brush, which can be accessed via `this.object3D`. In our case, for each new point we will draw a line from it to the previous one. The basic way of doing this is by creating new [THREE.Line](https://threejs.org/docs/?q=line#Reference/Objects/Line) that will be added to the `object3D`.
 
-![diagram](http://i.imgur.com/PllsU9K.png)
+![diagram](https://mozvr.ghost.io/content/images/2016/12/diagram-2.png)
 
 
 Go to our `simpleline.js` file and change the `addPoint()` function like this:
@@ -99,7 +98,7 @@ addPoint: function(position, orientation, pointerPosition, pressure, timestamp) 
 },
 ```
 
-The parameters passed to `addPoint()` represent the data of the new point, like its position, orientation, pressure of the trigger used (from 0 to 1) and the time it was made (in ms from the beginning of A-Painter). The difference between `position` and `pointerPosition` is that `position` refers to the center of the controller (more less above the trigger) and `pointerPosition` refers to the tip of the controller, from where the 'paint' is supposed to appear.
+The parameters passed to `addPoint()` represent the data of the new point, like its position, orientation, pressure of the trigger used (from 0 to 1) and the time it was made (in microseconds from the beginning of A-Painter page load). The difference between `position` and `pointerPosition` is that `position` refers to the center of the controller (more less above the trigger) and `pointerPosition` refers to the tip of the controller, from where the 'paint' is supposed to appear.
 
 In your brush you may want to discard the new point that is being added. In that case, simply return `false`.
 
@@ -107,11 +106,11 @@ In our new `addPoint()`, we first check if `this.data.prevPoint` exists or not. 
 
 Go try it!
 
-http://i.imgur.com/KsCjJjR.mp4
+<blockquote class="imgur-embed-pub" lang="en" data-id="KsCjJjR"><a href="//imgur.com/KsCjJjR"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 ## Caching
 
-Since `addPoint()` is usually called hundreds of times for each stroke you make, you want it to be as fast as possible and avoid creating innecessary stuff. For this reason, it is a good decision to cache and reuse all you can. In our example, the material is the same for every line added to the stroke, so let's cache it. The `init()` function is perfect for this purpose for is it called just one time, at the beginning of the stroke:
+Since `addPoint()` is usually called hundreds of times for each stroke you make, you want it to be as fast as possible and avoid creating unnecessary stuff. For this reason, it is a good decision to cache and reuse all you can. In our example, the material is the same for every line added to the stroke, so let's cache it. The `init()` function is perfect for this purpose for is it called just one time, at the beginning of the stroke:
 
 ```javascript
 init: function () {
@@ -145,14 +144,14 @@ in all our brush functions we have the object `this.data` available with many us
 - **this.data.color**:  the color that was selected when the stroke started
 
 
-> IMPORTANT: this brush is very unoptimized, creating a single line for every 2 vertices is a very bad decision, and as soon as you paint some strokes you probably perceive a drop in the frame rate. I just wanted to keep this tutorial as simple as possible.
+> **IMPORTANT NOTE**: this brush is very unoptimized, creating a single line for every 2 vertices is a very bad decision, and as soon as you paint some strokes you probably perceive a drop in the frame rate. I just wanted to keep this tutorial as simple as possible.
 
-> (If you wonder, the proper way of doing dynamic lines in threejs is using [BufferGeometries](https://threejs.org/docs/?q=buffer#Reference/Core/BufferGeometry). Like in [this example](http://jsfiddle.net/w67tzfhx/) by WestLangley).
+> (If you wonder, the proper way of doing dynamic lines in threejs is using [BufferGeometries](https://threejs.org/docs/?q=buffer#Reference/Core/BufferGeometry). I've rewritten this brush using BufferGeometries and uploaded to [the tutorial GitHub](https://github.com/feiss/apainter-brush-tutorial)).
 
 
-## Alive brush
+## Alive Brush
 
-By using the function `tick()` we can animate the strokes of our brush in any way we want. This function is called continuously on every frame and receives two parameters: `time` and `delta`. The first is the number of ms passed since the beginning of A-Painter, and the second is the difference of ms between this call and the last tick. They are useful for making the animation time dependant and running always at the same speed regarding of the frame rate.
+By using the function `tick()` we can animate the strokes of our brush in any way we want. This function is called continuously on every frame and receives two parameters: `time` and `delta`. The first is the number of microseconds passed since the beginning of A-Painter, and the second is the difference of microseconds between this call and the last tick. They are useful for making the animation time dependant and running always at the same speed regarding of the frame rate.
 
 Let's just add a simple little jitter to the lines:
 
@@ -175,7 +174,7 @@ tick: function (time, delta) {
 }
 ```
 
-For this to work, the vertices objects must be unique references. For doing this, in our function `addPoint()` change line:
+For this to work, the vertices objects must be unique references. For doing this, in our function `addPoint()` change the line:
 
 `lineGeometry.vertices.push(pointerPosition, this.data.prevPointerPosition);`
 
@@ -183,13 +182,14 @@ for
 
 `lineGeometry.vertices.push(pointerPosition.clone(), this.data.prevPointerPosition.clone());`
 
-Try this again, and check it out: lighting bolts! \:D/
+Try this again, and check it out: lightning bolts! \:D/
 
-http://i.imgur.com/MU2mfKX.gifv
+<blockquote class="imgur-embed-pub" lang="en" data-id="MU2mfKX"><a href="//imgur.com/MU2mfKX"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 
-## Now, your turn
+## Now, Your Turn!
 
-I hope you find this tutorial clear and interesting, and that you are eager to do your own custom brushes. If you do something cool, please share with us! You can contribute and add new brushes to the official A-Painter by sending us a Pull Request to the  [github A-Painter repository](http://github.com/aframevr/a-painter).
+I hope you find this tutorial clear and interesting, and that you are eager to create your own custom brushes. If you make something cool, please share it with us! You can contribute and add new brushes to the official A-Painter by sending a pull request to the  [github A-Painter repository](http://github.com/aframevr/a-painter). 
 
-That's all for now. Have fun! :)
+You can find the sources of [this tutorial on GitHub](https://github.com/feiss/apainter-brush-tutorial).
+
