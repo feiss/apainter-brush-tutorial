@@ -188,10 +188,11 @@ Try this again, and check it out: lightning bolts! \:D/
 
 http://imgur.com/MU2mfKX
 
+> In the [brush version using BufferGeometry](https://github.com/feiss/apainter-brush-tutorial/blob/master/simpleline2.js#L44-L51), the `tick()` function is much more simple, take a peek.
 
 ## Now, Your Turn!
 
 I hope you find this tutorial clear and interesting, and that you are eager to create your own custom brushes. If you make something cool, please share it with us! You can contribute and add new brushes to the official A-Painter by sending a pull request to the  [github A-Painter repository](http://github.com/aframevr/a-painter). 
 
-You can find the sources of [this tutorial on GitHub](https://github.com/feiss/apainter-brush-tutorial).
+You can find the source code of [this tutorial on GitHub](https://github.com/feiss/apainter-brush-tutorial).
 
