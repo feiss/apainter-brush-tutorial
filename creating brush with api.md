@@ -70,7 +70,7 @@ require('./brushes/simpleline.js');
 
 Now if you run your local A-Painter and test it with your HTC Vive or Oculus with controllers, you will find your new brush at the end of the list of brushes:
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="wN51Amc"><a href="//imgur.com/wN51Amc"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+http://imgur.com/wN51Amc
 
 
 For testing back and forth it is quite convenient to have the brush already selected by default. To do this, go to
@@ -108,7 +108,7 @@ In our new `addPoint()`, we first check if `this.data.prevPoint` exists or not. 
 
 Go try it!
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="KsCjJjR"><a href="//imgur.com/KsCjJjR"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+http://imgur.com/KsCjJjR
 
 ## Caching
 
@@ -186,7 +186,7 @@ for
 
 Try this again, and check it out: lightning bolts! \:D/
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="MU2mfKX"><a href="//imgur.com/MU2mfKX"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+http://imgur.com/MU2mfKX
 
 
 ## Now, Your Turn!
