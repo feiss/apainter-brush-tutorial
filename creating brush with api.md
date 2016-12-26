@@ -1,3 +1,5 @@
+# Creating a new A-Painter brush using the Brush API
+
 In this tutorial we will take the minimum steps required to create a very simple brush for A-Painter, a VR painting experience made by [Mozilla VR](http://mozvr.com) built with [A-Frame](http://aframe.io). For example, a brush to draw simple lines. We will going to call it `simpleline`.
 
 > Please notice that for making new brushes using A-Painter's Brush API you need to have some Javascript programming basics and also be a bit familiar with [Three.js](http://threejs.org).
